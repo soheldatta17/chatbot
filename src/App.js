@@ -54,11 +54,7 @@ const App = () => {
         `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyCnMeaOj5kOQKLo_K9a86yda0dBuCTxXkU`,
         requestData
       );
-
-      const generatedText = response.data.candidates[0].content.parts[0].text;
-      const formattedText = generatedText.replace(/\n/g, ' ');
-
-      setBotResponse(formattedText);
+      setBotResponse(response.data.candidates[0].content.parts[0].text);
     } catch (error) {
       console.error('Error:', error);
     } finally {
@@ -67,7 +63,10 @@ const App = () => {
   };
 
   return (
-    <div className="chatbot-container">
+    // Updated JSX
+    <>
+    <h1 className='head'>Made by Sohel</h1>
+    <div className={`chatbot-container alt3`}>
       <div className="chat-header">Chat with Bot</div>
       <div className="chat-body">
         <div className="input-container">
@@ -88,6 +87,7 @@ const App = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
