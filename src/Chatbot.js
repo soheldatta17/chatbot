@@ -9,7 +9,7 @@ const Chatbot = ({setChat}) => {
   const [enter, setEnter] = useState('Enter Your Question')
   const simulateTyping = (text) => {
     let index = 0;
-    text = text.replace(/\bGoogle\b/gi, 'Sohel');
+    text = text.replace(/\btrained by Google\b/gi, 'Sohel');
     const cleanText = String(text);
     
 
