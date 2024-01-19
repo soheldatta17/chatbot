@@ -6,18 +6,9 @@ import Pic from './Pic';
 
 const App = () => {
   const [chat, setChat] = useState(true);
-  if (chat)
-  {
-    return(
-      <Chatbot setChat={setChat}/>
-    )
-  }
-  else
-  {
-    return(
-      <Pic setChat={setChat}/>
-    )
-  }
+  return(
+    (chat)?<Chatbot setChat={setChat}/>:<Pic setChat={setChat}/>
+  )
 
 }
 export default App;
