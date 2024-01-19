@@ -3,13 +3,33 @@
   margin: 20px auto;
   padding: 20px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.chat-header {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.chat-body {
+  display: flex;
+  flex-direction: column;
 }
 
 .input-container {
   display: flex;
   gap: 10px;
+}
+
+input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 button {
@@ -23,6 +43,7 @@ button {
 
 .loading {
   color: #007bff;
+  margin-top: 10px;
 }
 
 .bot-response {
@@ -31,4 +52,5 @@ button {
   background-color: #f0f0f0;
   border: 1px solid #ccc;
   border-radius: 5px;
+  word-wrap: break-word;
 }
