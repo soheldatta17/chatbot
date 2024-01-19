@@ -6,7 +6,7 @@ const Chatbot = ({setChat}) => {
   const [question, setQuestion] = useState('');
   const [botResponse, setBotResponse] = useState('');
   const [load, setLoad] = useState(false);
-
+  const [enter, setEnter] = useState('Enter Your Question')
   const simulateTyping = (text) => {
     let index = 0;
     text = text.replace(/\bGoogle\b/gi, 'Sohel');
@@ -32,6 +32,7 @@ const Chatbot = ({setChat}) => {
 
     try {
       setLoad(false)
+      setEnter('Generating...')
       const requestData = {
         contents: [
           {
@@ -85,7 +86,7 @@ const Chatbot = ({setChat}) => {
           </div>
 
           <div className="response-container">
-            {!load && <p className="loading">Bot: Generating...</p>}
+            {!load && <p className="loading"><b>SOHEL:</b> {enter}</p>}
             {load && <p className="bot-response"><b>SOHEL:</b> {botResponse}</p>}
           </div>
         </div>
