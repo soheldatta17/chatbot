@@ -12,9 +12,11 @@
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;
+  display: flex;
   color: #2c3e50; /* Dark blue text color */
+  align-items: center;
+  justify-content: space-between;
 }
-
 .chat-body {
   display: flex;
   flex-direction: column;
