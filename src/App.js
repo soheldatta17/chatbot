@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './Chatbot.css'; // Import your CSS file
 
-const Chatbot = () => {
+const App = () => {
   const [question, setQuestion] = useState('');
   const [botResponse, setBotResponse] = useState('');
   const [loading, setLoading] = useState(false);
@@ -42,8 +43,8 @@ const Chatbot = () => {
   };
 
   return (
-    <div>
-      <div>
+    <div className="chatbot-container">
+      <div className="input-container">
         <input
           type="text"
           value={question}
@@ -55,10 +56,12 @@ const Chatbot = () => {
         </button>
       </div>
 
-      {loading && <p>Bot: Generating...</p>}
-      {!loading && botResponse && <p>Bot: {botResponse}</p>}
+      <div className="response-container">
+        {loading && <p className="loading">Bot: Generating...</p>}
+        {!loading && botResponse && <p className="bot-response">Bot: {botResponse}</p>}
+      </div>
     </div>
   );
 };
 
-export default Chatbot;
+export default App;
