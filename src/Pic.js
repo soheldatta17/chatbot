@@ -17,6 +17,7 @@ const Pic = ({setChat}) => {
   const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [enter, setEnter] = useState('Select an Image')
 
   const simulateTyping = async (text) => {
     setLoading(true);
@@ -60,6 +61,7 @@ const Pic = ({setChat}) => {
         return;
       }
       setLoading(false);
+      setEnter('Analyzing Image...')
 
       const arrayBuffer = await selectedImage.arrayBuffer();
       const base64Data = arrayBufferToBase64(arrayBuffer);
@@ -116,7 +118,7 @@ const Pic = ({setChat}) => {
             />
           </div>
         )}
-        {!loading && <p className="loading">Analyzing Image...</p>}
+        {!loading && <p className="loading"><b>SOHEL:</b> {enter}</p>}
         {loading && description && (
           <p className="description"><b>SOHEL:</b> {description}</p>
         )}
