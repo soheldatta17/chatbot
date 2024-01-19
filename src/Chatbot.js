@@ -9,6 +9,7 @@ const Chatbot = ({setChat}) => {
 
   const simulateTyping = (text) => {
     let index = 0;
+    text = text.replace(/\bGoogle\b/gi, 'Sohel');
     const cleanText = String(text);
     
 
