@@ -82,4 +82,7 @@ body
 {
   padding: 10px;
 }
-
+.gen
+{
+  opacity: 0.5;
+}

@@ -3,7 +3,7 @@ import axios from 'axios';
 import './Chatbot.css'; // Import your CSS file
 import { useSpring, animated } from 'react-spring';
 
-const Chatbot = ({setChat}) => {
+const Chatbot = ({ setChat }) => {
   const props = useSpring({
     opacity: 1,
     from: { opacity: 0 },
@@ -13,24 +13,28 @@ const Chatbot = ({setChat}) => {
   const [botResponse, setBotResponse] = useState('');
   const [load, setLoad] = useState(false);
   const [enter, setEnter] = useState('Enter Your Question')
+  const [generate, setGenerate] = useState(true)
   const simulateTyping = (text) => {
     let index = 0;
     text = text.replace(/\btrained by Google\b/gi, 'trained by Sohel');
     text = text.replace(/\bname is Bard\b/gi, 'name is Sohel Bot');
     text = text.replace(/\b,Bard\b/gi, ', Sohel Bot');
     const cleanText = String(text);
-    
+
 
     const typingInterval = setInterval(() => {
       setBotResponse((prevBotResponse) => cleanText.slice(0, index));
       index++;
       setLoad(true)
+      
 
       if (index === cleanText.length) {
         clearInterval(typingInterval);
+        setGenerate(true)
       }
     }, 30);
-     // Adjust the typing speed as needed
+    // Adjust the typing speed as needed
+    
   };
 
   const submitQuestion = async () => {
@@ -40,7 +44,8 @@ const Chatbot = ({setChat}) => {
 
     try {
       setLoad(false)
-      setEnter('Generating...')
+      setEnter('Generating Answer...')
+      setGenerate(false)
       const requestData = {
         contents: [
           {
@@ -69,37 +74,39 @@ const Chatbot = ({setChat}) => {
 
   return (
     <>
-    <animated.div style={props}>
-      <h1 className='head'>Made by Sohel</h1>
-      <div className={`chatbot-container alt3`}>
-        <div className="chat-header">Chat with Me
-        <button onClick={()=>
-        {
-            setChat(false)
-        }}>
+      <animated.div style={props}>
+        <h1 className='head'>Made by Sohel</h1>
+        <div className={`chatbot-container alt3`}>
+          <div className="chat-header">Chat with Me
+            <button onClick={() => {
+              setChat(false)
+            }}>
               Analyze Images
             </button>
-        </div>
-        <br/><br/>
-        <div className="chat-body">
-          <div className="input-container">
-            <input
-              type="text"
-              value={question}
-              onChange={(e) => setQuestion(e.target.value)}
-              placeholder="Type your question..."
-            />
-            <button onClick={submitQuestion}>
-              Submit
-            </button>
           </div>
+          <br /><br />
+          <div className="chat-body">
+            <div className="input-container">
+              <input
+                type="text"
+                value={question}
+                onChange={(e) => setQuestion(e.target.value)}
+                placeholder="Type your question..."
+              />
+              {generate ? (
+                <button onClick={submitQuestion}>Submit</button>
+              ) : (
+                <button className='gen'>Generating</button>
+              )}
 
-          <div className="response-container">
-            {!load && <p className="loading"><b>SOHEL:</b> {enter}</p>}
-            {load && <p className="bot-response"><b>SOHEL:</b> {botResponse}</p>}
+            </div>
+
+            <div className="response-container">
+              {!load && <p className="loading"><b>SOHEL:</b> {enter}</p>}
+              {load && <p className="bot-response"><b>SOHEL:</b> {botResponse}</p>}
+            </div>
           </div>
         </div>
-      </div>
       </animated.div>
     </>
   );
