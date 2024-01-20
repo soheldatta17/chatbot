@@ -16,6 +16,7 @@ const Chatbot = ({setChat}) => {
   const simulateTyping = (text) => {
     let index = 0;
     text = text.replace(/\btrained by Google\b/gi, 'trained by Sohel');
+    text = text.replace(/\bname is Bard\b/gi, 'name is Sohel');
     const cleanText = String(text);
     
 
