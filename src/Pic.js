@@ -23,6 +23,7 @@ const Pic = ({setChat}) => {
   const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [generate, setGenerate] = useState(true);
   const [enter, setEnter] = useState('Select an Image')
 
   const simulateTyping = async (text) => {
@@ -39,6 +40,7 @@ const Pic = ({setChat}) => {
         index++;
       } else {
         clearInterval(typingInterval);
+        setGenerate(true)
       }
     }, 30); // Adjust the typing speed as needed
   };
@@ -68,6 +70,7 @@ const Pic = ({setChat}) => {
       }
       setLoading(false);
       setEnter('Analyzing Image...')
+      setGenerate(false)
 
       const arrayBuffer = await selectedImage.arrayBuffer();
       const base64Data = arrayBufferToBase64(arrayBuffer);
@@ -108,11 +111,16 @@ const Pic = ({setChat}) => {
               Start Chatting
             </button>
       </div>
+
       <div className="fileContainer">
         <input type="file" accept="image/*" onChange={handleFileChange} />
-        <button className="button" onClick={submitDescriptionRequest}>
-          Generate Description
-        </button>
+        {generate ? (
+                <button className="button" onClick={submitDescriptionRequest}>
+                Generate Description
+              </button>
+              ) : (
+                <button className='gen'>Generating</button>
+              )}
       </div>
       <div>
         {selectedImage && (

@@ -13,7 +13,7 @@ const Chatbot = ({ setChat }) => {
   const [botResponse, setBotResponse] = useState('');
   const [load, setLoad] = useState(false);
   const [enter, setEnter] = useState('Enter Your Question')
-  const [generate, setGenerate] = useState(true)
+  const [generate, setGenerate] = useState(true);
   const simulateTyping = (text) => {
     let index = 0;
     text = text.replace(/\btrained by Google\b/gi, 'trained by Sohel');
