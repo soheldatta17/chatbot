@@ -3,38 +3,41 @@ import axios from 'axios';
 import './Chatbot.css'; // Import your CSS file
 import { useSpring, animated } from 'react-spring';
 
-const Chatbot = ({ setChat }) => {
+interface ChatbotProps {
+  setChat: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Chatbot: React.FC<ChatbotProps> = ({ setChat }) => {
   const props = useSpring({
     opacity: 1,
     from: { opacity: 0 },
     config: { duration: 2500 }, // Adjust the duration as needed
   });
+
   const [question, setQuestion] = useState('');
   const [botResponse, setBotResponse] = useState('');
   const [load, setLoad] = useState(false);
-  const [enter, setEnter] = useState('Enter Your Question')
+  const [enter, setEnter] = useState('Enter Your Question');
   const [generate, setGenerate] = useState(true);
-  const simulateTyping = (text) => {
+
+  const simulateTyping = (text: string) => {
     let index = 0;
     text = text.replace(/\btrained by Google\b/gi, 'trained by Sohel');
     text = text.replace(/\bname is Bard\b/gi, 'name is Sohel Bot');
     text = text.replace(/\b,Bard\b/gi, ', Sohel Bot');
     const cleanText = String(text);
 
-
     const typingInterval = setInterval(() => {
       setBotResponse((prevBotResponse) => cleanText.slice(0, index));
       index++;
-      setLoad(true)
-      
+      setLoad(true);
 
       if (index === cleanText.length) {
         clearInterval(typingInterval);
-        setGenerate(true)
+        setGenerate(true);
       }
     }, 30);
     // Adjust the typing speed as needed
-    
   };
 
   const submitQuestion = async () => {
@@ -43,9 +46,9 @@ const Chatbot = ({ setChat }) => {
     }
 
     try {
-      setLoad(false)
-      setEnter('Generating Answer...')
-      setGenerate(false)
+      setLoad(false);
+      setEnter('Generating Answer...');
+      setGenerate(false);
       const requestData = {
         contents: [
           {
@@ -77,9 +80,10 @@ const Chatbot = ({ setChat }) => {
       <animated.div style={props}>
         <h1 className='head'>Made by Sohel</h1>
         <div className={`chatbot-container alt3`}>
-          <div className="chat-header">Chat with Me
+          <div className="chat-header">
+            Chat with Me
             <button onClick={() => {
-              setChat(false)
+              setChat(false);
             }}>
               Analyze Images
             </button>
@@ -98,7 +102,6 @@ const Chatbot = ({ setChat }) => {
               ) : (
                 <button className='gen'>Generating</button>
               )}
-
             </div>
 
             <div className="response-container">
