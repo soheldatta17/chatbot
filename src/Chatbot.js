@@ -17,6 +17,7 @@ const Chatbot = ({setChat}) => {
     let index = 0;
     text = text.replace(/\btrained by Google\b/gi, 'trained by Sohel');
     text = text.replace(/\bname is Bard\b/gi, 'name is Sohel Bot');
+    text = text.replace(/\b,Bard\b/gi, ', Sohel Bot');
     const cleanText = String(text);
     
 
