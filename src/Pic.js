@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSpring, animated } from 'react-spring';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import './Image.css';
 const genAI = new GoogleGenerativeAI("AIzaSyCnMeaOj5kOQKLo_K9a86yda0dBuCTxXkU");
@@ -14,6 +15,11 @@ async function generateDescription(imagePart) {
 }
 
 const Pic = ({setChat}) => {
+  const props = useSpring({
+    opacity: 1,
+    from: { opacity: 0 },
+    config: { duration: 2500 }, // Adjust the duration as needed
+  });
   const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -90,6 +96,7 @@ const Pic = ({setChat}) => {
 
   return (
     <>
+    <animated.div style={props}>
     <h1 className='head'>Made by Sohel</h1>
     <div className="container">
     <div className="chat-header">
@@ -124,6 +131,7 @@ const Pic = ({setChat}) => {
         )}
       </div>
     </div>
+    </animated.div>
     </>
   );
 };

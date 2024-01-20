@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import './Chatbot.css'; // Import your CSS file
 import Chatbot from './Chatbot';
 import Pic from './Pic';

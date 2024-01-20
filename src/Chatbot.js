@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Chatbot.css'; // Import your CSS file
+import { useSpring, animated } from 'react-spring';
 
 const Chatbot = ({setChat}) => {
+  const props = useSpring({
+    opacity: 1,
+    from: { opacity: 0 },
+    config: { duration: 2500 }, // Adjust the duration as needed
+  });
   const [question, setQuestion] = useState('');
   const [botResponse, setBotResponse] = useState('');
   const [load, setLoad] = useState(false);
@@ -61,6 +67,7 @@ const Chatbot = ({setChat}) => {
 
   return (
     <>
+    <animated.div style={props}>
       <h1 className='head'>Made by Sohel</h1>
       <div className={`chatbot-container alt3`}>
         <div className="chat-header">Chat with Me
@@ -91,6 +98,7 @@ const Chatbot = ({setChat}) => {
           </div>
         </div>
       </div>
+      </animated.div>
     </>
   );
 };
