@@ -62,7 +62,7 @@ const Chatbot: React.FC<ChatbotProps> = ({ setChat }) => {
       };
 
       const response = await axios.post(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyCnMeaOj5kOQKLo_K9a86yda0dBuCTxXkU`,
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyCwTEOUMvj3o9qzSJnYfspo8eQSB5yHCGc`,
         requestData
       );
 
