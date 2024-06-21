@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './Chatbot.css'; // Import your CSS file
 import { useSpring, animated } from 'react-spring';
-
+console.log()
 interface ChatbotProps {
   setChat: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -62,7 +62,7 @@ const Chatbot: React.FC<ChatbotProps> = ({ setChat }) => {
       };
 
       const response = await axios.post(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyCwTEOUMvj3o9qzSJnYfspo8eQSB5yHCGc`,
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${process.env.REACT_APP_API_KEY}`,
         requestData
       );
 

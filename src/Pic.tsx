@@ -7,7 +7,7 @@ interface PicProps {
   setChat: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const genAI = new GoogleGenerativeAI("AIzaSyCwTEOUMvj3o9qzSJnYfspo8eQSB5yHCGc");
+const genAI = new GoogleGenerativeAI(`${process.env.REACT_APP_API_KEY}`);
 
 async function generateDescription(imagePart: any): Promise<string> {
   const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
